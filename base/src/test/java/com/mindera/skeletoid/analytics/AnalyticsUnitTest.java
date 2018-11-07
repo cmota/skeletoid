@@ -45,7 +45,7 @@ public class AnalyticsUnitTest {
 
     @After
     public void cleanUp() {
-        Analytics.deinit(null);
+        Analytics.deinit(mContext);
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -151,11 +151,6 @@ public class AnalyticsUnitTest {
         assertEquals(2, appendersIds.size());
         assertTrue(appendersIds.contains("A"));
         assertTrue(appendersIds.contains("B"));
-    }
-
-    @Test
-    public void testDisableAppendersNull() {
-        Analytics.removeAppenders(mContext, null);
     }
 
     @Test

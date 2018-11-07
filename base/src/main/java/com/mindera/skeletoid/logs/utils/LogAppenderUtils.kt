@@ -14,7 +14,7 @@ object LogAppenderUtils {
      */
     @JvmStatic
     fun getLogString(vararg logs: String?): String {
-        if (logs == null) {
+        if (logs.isEmpty()) {
             return ""
         }
 

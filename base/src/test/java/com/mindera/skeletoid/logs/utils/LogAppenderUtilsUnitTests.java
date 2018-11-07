@@ -17,12 +17,7 @@ public class LogAppenderUtilsUnitTests {
 
     @Test
     public void testGetLogStringEmptyString() {
-        assertEquals("", LogAppenderUtils.getLogString(new String[0]));
-    }
-
-    @Test
-    public void testGetLogStringNull() {
-        assertEquals("", LogAppenderUtils.getLogString(null));
+        assertEquals("", LogAppenderUtils.getLogString());
     }
 
     @Test
