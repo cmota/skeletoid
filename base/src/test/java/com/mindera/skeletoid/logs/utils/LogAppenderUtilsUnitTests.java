@@ -10,11 +10,6 @@ public class LogAppenderUtilsUnitTests {
 
     private String mPackageName = "my.package.name";
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testConstructor() {
-        new LogAppenderUtils();
-    }
-
     @Test
     public void testGetLogString() {
         assertEquals("A B C ", LogAppenderUtils.getLogString("A", "B", "C"));

@@ -1,27 +1,30 @@
-package com.mindera.skeletoid.analytics.appenders;
+package com.mindera.skeletoid.analytics.appenders
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-
-import java.util.Map;
+import android.app.Activity
+import android.content.Context
+import android.os.Bundle
 
 /**
  * Interface for Analytics appenders
  */
-public interface IAnalyticsAppender {
+interface IAnalyticsAppender {
+
+    /**
+     * Get Analytics id (it should be unique within AnalyticsAppenders)
+     */
+    val analyticsId: String
 
     /**
      * Enable analytics
      *
      * @param context Application context
      */
-    void enableAppender(Context context);
+    fun enableAppender(context: Context)
 
     /**
      * Disable analytics.
      */
-    void disableAppender();
+    fun disableAppender()
 
     /**
      * Track app event
@@ -29,7 +32,7 @@ public interface IAnalyticsAppender {
      * @param eventName        Event name
      * @param analyticsPayload Generic analytics payload
      */
-    void trackEvent(String eventName, Map<String, Object> analyticsPayload);
+    fun trackEvent(eventName: String, analyticsPayload: Map<String, Any>)
 
     /**
      * Track app event
@@ -37,7 +40,7 @@ public interface IAnalyticsAppender {
      * @param eventName        Event name
      * @param analyticsPayload Generic analytics payload
      */
-    void trackEvent(String eventName, Bundle analyticsPayload);
+    fun trackEvent(eventName: String, analyticsPayload: Bundle)
 
     /**
      * Track app page hit
@@ -46,19 +49,14 @@ public interface IAnalyticsAppender {
      * @param screenName          Screen name
      * @param screenClassOverride Screen class override name
      */
-    void trackPageHit(Activity activity, String screenName, String screenClassOverride);
-
-    /**
-     * Get Analytics id (it should be unique within AnalyticsAppenders)
-     */
-    String getAnalyticsId();
+    fun trackPageHit(activity: Activity, screenName: String, screenClassOverride: String)
 
     /**
      * Sets the user ID
      *
      * @param userID ID of the user
      */
-    void setUserID(String userID);
+    fun setUserID(userID: String)
 
     /**
      * Sets a custom property of the user
@@ -66,5 +64,5 @@ public interface IAnalyticsAppender {
      * @param name  Property name
      * @param value Property value
      */
-    void setUserProperty(String name, String value);
+    fun setUserProperty(name: String, value: String)
 }

@@ -7,7 +7,6 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static com.mindera.skeletoid.threads.threadpools.ThreadPoolUtils.mThreadTotal;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -20,12 +19,7 @@ public class ThreadPoolUtilsUnitTest {
 
     @Before
     public void beforeTest() {
-        ThreadPoolUtils.mThreadTotal.set(0);
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testConstructor() {
-        new ThreadPoolUtils();
+        ThreadPoolUtils.getThreadCount().set(0);
     }
 
     @Test
@@ -75,7 +69,7 @@ public class ThreadPoolUtilsUnitTest {
         when(threadPoolExecutor.getCorePoolSize()).thenReturn(5);
 
         ThreadPoolUtils.shutdown(threadPoolExecutor);
-        assertEquals(-5, mThreadTotal.get());
+        assertEquals(-5, ThreadPoolUtils.getThreadCount().get());
 
         verify(threadPoolExecutor, times(1)).shutdown();
     }
@@ -93,7 +87,7 @@ public class ThreadPoolUtilsUnitTest {
         when(threadPoolExecutor.getCorePoolSize()).thenReturn(5);
 
         ThreadPoolUtils.shutdownNow(threadPoolExecutor);
-        assertEquals(-5, mThreadTotal.get());
+        assertEquals(-5, ThreadPoolUtils.getThreadCount().get());
 
         verify(threadPoolExecutor, times(1)).shutdownNow();
     }

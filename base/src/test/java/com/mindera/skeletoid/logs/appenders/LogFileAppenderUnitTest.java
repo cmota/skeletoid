@@ -1,10 +1,10 @@
 package com.mindera.skeletoid.logs.appenders;
 
+import android.content.Context;
+
 import com.mindera.skeletoid.logs.LOG;
 
 import org.junit.Test;
-
-import android.content.Context;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -19,50 +19,50 @@ public class LogFileAppenderUnitTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorAllNull() {
-        new LogFileAppender(null, null);
+        new LogFileAppender(null, null, false);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorPackageNameNull() {
-        new LogFileAppender(null, FILE_NAME);
+        new LogFileAppender(null, FILE_NAME, false);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorFileNameInvalid() {
-        new LogFileAppender(PACKAGE_NAME, "*");
+        new LogFileAppender(PACKAGE_NAME, "*", false);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorFileNameNull() {
-        new LogFileAppender(PACKAGE_NAME, null);
+        new LogFileAppender(PACKAGE_NAME, null, false);
 
     }
 
     @Test
     public void testFileNameIsValidEmpty() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
         assertFalse(appender.isFilenameValid(""));
     }
 
     @Test
     public void testFileNameIsValidInvalid() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
         assertFalse(appender.isFilenameValid("//"));
     }
 
     @Test
     public void testFileNameIsValid() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
         assertTrue(appender.isFilenameValid(FILE_NAME));
     }
 
 
     @Test
     public void testConstructor() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
 
         assertEquals("LogFileAppender", appender.getLoggerId());
     }
@@ -71,7 +71,7 @@ public class LogFileAppenderUnitTest {
     public void testEnableAppender() {
         Context context = mock(Context.class);
 
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
 
         appender.enableAppender(context);
 
@@ -81,23 +81,16 @@ public class LogFileAppenderUnitTest {
 
     @Test
     public void testDisableAppender() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
         appender.disableAppender();
 
         assertFalse(appender.canWriteToFile());
 
     }
 
-//    @Test
-//    public void testFormatLog() {
-//        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
-//        assertTrue(appender.formatLog(LOG.PRIORITY.DEBUG, null, "Hello", "My friend").matches("\\d\\d-\\d\\d \\d\\d:\\d\\d\\.\\d\\d:\\d: D/" + PACKAGE_NAME + "(" + Thread.currentThread().getId() + "): Hello My friend"));
-//
-//    }
-
     @Test
     public void testSetMaxLineLength() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
 
 
         appender.setLogFileSize(1000);
@@ -107,7 +100,7 @@ public class LogFileAppenderUnitTest {
 
     @Test
     public void testSetNumberOfLogFiles() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
 
         appender.setNumberOfLogFiles(5);
         assertEquals(5, appender.getNumberOfLogFiles());
@@ -115,7 +108,7 @@ public class LogFileAppenderUnitTest {
 
     @Test
     public void testSetMinLogLevel() {
-        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME);
+        LogFileAppender appender = new LogFileAppender(PACKAGE_NAME, FILE_NAME, false);
 
         appender.setMinLogLevel(LOG.PRIORITY.DEBUG);
         assertEquals(LOG.PRIORITY.DEBUG, appender.getMinLogLevel());

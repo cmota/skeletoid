@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.mindera.skeletoid.logs.utils.LogAppenderUtils.getObjectHash;
 import static com.mindera.skeletoid.threads.utils.ThreadUtils.getCurrentThreadName;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -216,7 +215,7 @@ public class LoggerManagerUnitTest {
 
         loggerManager.log(TAG, LOG.PRIORITY.DEBUG, TEXT);
 
-        final String log = String.format(LOG_FORMAT_4ARGS, TAG, getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
+        final String log = String.format(LOG_FORMAT_4ARGS, TAG, LogAppenderUtils.getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
 
         verify(appenderA, times(1)).log(LOG.PRIORITY.DEBUG, null, log);
         verify(appenderB, times(1)).log(LOG.PRIORITY.DEBUG, null, log);
@@ -243,7 +242,7 @@ public class LoggerManagerUnitTest {
 
         loggerManager.log(TAG, LOG.PRIORITY.ERROR, TEXT);
 
-        final String log = String.format(LOG_FORMAT_4ARGS, TAG, getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
+        final String log = String.format(LOG_FORMAT_4ARGS, TAG, LogAppenderUtils.getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
 
         verify(appenderA, times(1)).log(LOG.PRIORITY.ERROR, null, log);
         verify(appenderB, times(1)).log(LOG.PRIORITY.ERROR, null, log);
@@ -269,7 +268,7 @@ public class LoggerManagerUnitTest {
 
         loggerManager.log(TAG, LOG.PRIORITY.WARN, TEXT);
 
-        final String log = String.format(LOG_FORMAT_4ARGS, TAG, getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
+        final String log = String.format(LOG_FORMAT_4ARGS, TAG, LogAppenderUtils.getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
 
         verify(appenderA, times(1)).log(LOG.PRIORITY.WARN, null, log);
         verify(appenderB, times(1)).log(LOG.PRIORITY.WARN, null, log);
@@ -295,7 +294,7 @@ public class LoggerManagerUnitTest {
 
         loggerManager.log(TAG, LOG.PRIORITY.FATAL, TEXT);
 
-        final String log = String.format(LOG_FORMAT_4ARGS, TAG, getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
+        final String log = String.format(LOG_FORMAT_4ARGS, TAG, LogAppenderUtils.getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
 
         verify(appenderA, times(1)).log(LOG.PRIORITY.FATAL, null, log);
         verify(appenderB, times(1)).log(LOG.PRIORITY.FATAL, null, log);
@@ -321,7 +320,7 @@ public class LoggerManagerUnitTest {
 
         loggerManager.log(TAG, LOG.PRIORITY.INFO, TEXT);
 
-        final String log = String.format(LOG_FORMAT_4ARGS, TAG, getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
+        final String log = String.format(LOG_FORMAT_4ARGS, TAG, LogAppenderUtils.getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
 
         verify(appenderA, times(1)).log(LOG.PRIORITY.INFO, null, log);
         verify(appenderB, times(1)).log(LOG.PRIORITY.INFO, null, log);
@@ -348,7 +347,7 @@ public class LoggerManagerUnitTest {
 
         loggerManager.log(TAG, LOG.PRIORITY.VERBOSE, TEXT);
 
-        final String log = String.format(LOG_FORMAT_4ARGS, TAG, getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
+        final String log = String.format(LOG_FORMAT_4ARGS, TAG, LogAppenderUtils.getObjectHash(TAG), getCurrentThreadName(), LogAppenderUtils.getLogString(TEXT));
 
         verify(appenderA, times(1)).log(LOG.PRIORITY.VERBOSE, null, log);
         verify(appenderB, times(1)).log(LOG.PRIORITY.VERBOSE, null, log);

@@ -6,11 +6,6 @@ import static junit.framework.Assert.assertEquals;
 
 public class StringUtilsUnitTests {
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testConstructor() {
-        new StringUtils();
-    }
-
     @Test
     public void testsOrdinalIndexNullString() {
         assertEquals(-1, StringUtils.ordinalIndexOf(null, "abc", 1));

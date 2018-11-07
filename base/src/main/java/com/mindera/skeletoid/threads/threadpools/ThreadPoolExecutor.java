@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit;
  * This is an extension of a ThreadPoolExecutor that implements priorities for runnables submitted.
  * It also handles uncaught exceptions
  */
+
+//TODO Migrate to Kotlin
 public class ThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor {
 
     private static final String LOG_TAG = "ThreadPoolExecutor";
@@ -43,7 +45,7 @@ public class ThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor 
      */
     public ThreadPoolExecutor(int corePoolSize, int maxPoolSize, long keepAlive, TimeUnit timeUnit,
                               final NamedThreadFactory threadFactory) {
-        super(corePoolSize, maxPoolSize, keepAlive, timeUnit, new PriorityBlockingQueue<>(11,
+        super(corePoolSize, maxPoolSize, keepAlive, timeUnit, new PriorityBlockingQueue<Runnable>(11,
                 new PriorityTaskComparator()), threadFactory);
     }
 
